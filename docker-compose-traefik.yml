@@ -9,7 +9,7 @@ services:
       - --providers.docker=true
       - --accesslog=true
       - --providers.docker.exposedbydefault=false
-      - --providers.docker.network=mynetwork
+      - --providers.docker.network=medianet
       - --entrypoints.web.address=:80
       - --entrypoints.websecure.address=:443
       - --certificatesresolvers.le.acme.email=${LE_EMAIL}
@@ -35,14 +35,14 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - traefik-le:/letsencrypt
     networks:
-      - mynetwork
+      - medianet
 
 
 volumes:
   traefik-le:
 
 networks:
-  mynetwork:
+  medianet:
     external: true
 
 # Generate HASHED_ADMIN_USER_PASS using below command

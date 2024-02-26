@@ -40,7 +40,7 @@ services:
       # - /yourpath/yourconfig.conf:/gluetun/config.conf:ro
 
     networks:
-      - mynetwork
+      - medianet
     
     # Uncomment/enable below ports if VPN is used/enabled
     # ports:
@@ -64,7 +64,7 @@ services:
 
     # Comment below lines if VPN is enabled
     networks:               # Comment this line if vpn is enabled
-      - mynetwork           # Comment this line if vpn is enabled
+      - medianet           # Comment this line if vpn is enabled
 
     # Unomment below line if vpn is enabled
     # network_mode: service:vpn
@@ -89,10 +89,10 @@ services:
     container_name: radarr
     image: lscr.io/linuxserver/radarr:5.3.6
     networks:
-      - mynetwork   # Comment this line if VPN is enabled
+      - medianet   # Comment this line if VPN is enabled
     ## Uncomment below lines if VPN is enabled
-    #   mynetwork:
-    #     ipv4_address: ${RADARR_STATIC_CONTAINER_IP} # It should be available IPv4 address in range of docker network `mynetwork` e.g. 172.20.0.2
+    #   medianet:
+    #     ipv4_address: ${RADARR_STATIC_CONTAINER_IP} # It should be available IPv4 address in range of docker network `medianet` e.g. 172.20.0.2
     environment:
       - PUID=1000
       - PGID=1000
@@ -108,10 +108,10 @@ services:
     image: linuxserver/sonarr:4.0.1-develop
     container_name: sonarr
     networks:
-      - mynetwork   # Comment this line if VPN is enabled
+      - medianet   # Comment this line if VPN is enabled
     ## Uncomment below lines if VPN is enabled
-    #   mynetwork:
-    #     ipv4_address: ${SONARR_STATIC_CONTAINER_IP} # It should be available IPv4 address in range of docker network `mynetwork` e.g. 172.20.0.2
+    #   medianet:
+    #     ipv4_address: ${SONARR_STATIC_CONTAINER_IP} # It should be available IPv4 address in range of docker network `medianet` e.g. 172.20.0.2
     environment:
       - PUID=1000
       - PGID=1000
@@ -133,7 +133,7 @@ services:
     # network_mode: service:vpn # Uncomment this line if vpn is enabled
 
     networks:               # Comment this line if vpn is enabled
-      - mynetwork           # Comment this line if vpn is enabled
+      - medianet           # Comment this line if vpn is enabled
     environment:
       - PUID=1000
       - PGID=1000
@@ -150,7 +150,7 @@ services:
     image: linuxserver/jellyfin:10.8.13
     container_name: jellyfin
     networks:
-      - mynetwork
+      - medianet
     environment:
       - PUID=1000
       - PGID=1000
@@ -174,7 +174,7 @@ services:
   #   image: linuxshots/cleanmyarr:0.8.1
   #   container_name: cleanmyarr
   #   networks:
-  #     - mynetwork
+  #     - medianet
   #   volumes:
   #     - cleanmyarr-config:/config
     # restart: unless-stopped
@@ -206,5 +206,5 @@ volumes:
   # cleanmyarr-config:
 
 networks:
-  mynetwork:
+  medianet:
     external: true

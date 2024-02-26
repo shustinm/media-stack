@@ -5,7 +5,7 @@ services:
     image: nginx:1.25.1-alpine
     container_name: nginx
     networks:
-      - mynetwork
+      - medianet
     volumes:
       - nginx-config:/etc/nginx
       - letsencrypt:/etc/letsencrypt
@@ -19,5 +19,5 @@ volumes:
   letsencrypt:
 
 networks:
-  mynetwork:
+  medianet:
     external: true
