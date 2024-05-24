@@ -18,11 +18,11 @@ services:
       ## For list of server countries, visit https://raw.githubusercontent.com/qdm12/gluetun/master/internal/storage/servers.json
       ## When VPN_SERVICE_PROVIDER is custom. Comment the below line
       - SERVER_COUNTRIES=${SERVER_COUNTRIES:-Switzerland}
-    
+
       # - FREE_ONLY=on  # Valid with protonvpn only. Value willbe set "on" if using free subscription provided by protonvpn
 
       ## Enable below if VPN_SERVICE_PROVIDER=custom
-      # - VPN_TYPE=openvpn # or wireguard. 
+      # - VPN_TYPE=openvpn # or wireguard.
 
       ## If VPN_TYPE is openvpn
       # - OPENVPN_CUSTOM_CONFIG=/gluetun/custom.conf
@@ -165,7 +165,7 @@ services:
       - 7359:7359/udp
       - 8920:8920
     restart: unless-stopped
-  
+
   # Doc: https://github.com/navilg/cleanmyarr
   # cleanmyarr:
   #   depends_on:
@@ -196,6 +196,21 @@ services:
     # - CMA_RADARR_ENCODED_API_KEY=${CMA_RADARR_ENCODED_API_KEY:-""}
     # - CMA_RADARR_ENABLE_NOTIFICATION=${CMA_RADARR_ENABLE_NOTIFICATION:-""}
 
+
+  jellyseerr:
+     image: fallenbagel/jellyseerr:latest
+     container_name: jellyseerr
+     networks:
+      - medianet   # Comment this line if VPN is enabled
+     environment:
+      - LOG_LEVEL=debug
+      - TZ=Asia/Tashkent
+     ports:
+      - 5055:5055
+     volumes:
+      - jellyseerr-config:/app/config
+     restart: unless-stopped
+
 volumes:
   torrent-downloads:
   radarr-config:
@@ -203,6 +218,7 @@ volumes:
   prowlarr-config:
   jellyfin-config:
   qbittorrent-config:
+  jellyseerr-config:
   # cleanmyarr-config:
 
 networks:
