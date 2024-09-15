@@ -204,12 +204,29 @@ services:
       - medianet   # Comment this line if VPN is enabled
      environment:
       - LOG_LEVEL=debug
-      - TZ=Asia/Tashkent
+      - TZ=Asia/Jerusalem
      ports:
       - 5055:5055
      volumes:
       - jellyseerr-config:/app/config
      restart: unless-stopped
+
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    networks:
+     - medianet
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Jerusalem
+    volumes:
+      - bazarr-config:/config
+      - torrent-downloads:/data
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+
 
 volumes:
   torrent-downloads:
@@ -219,6 +236,7 @@ volumes:
   jellyfin-config:
   qbittorrent-config:
   jellyseerr-config:
+  bazarr-config:
   # cleanmyarr-config:
 
 networks:
