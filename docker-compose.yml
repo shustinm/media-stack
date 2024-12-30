@@ -1,4 +1,3 @@
-version: "3.9"
 name: media-stack
 services:
 
@@ -56,7 +55,7 @@ services:
   ## Change password after install from UI --> Tools --> Options --> WebUI ##
   qbittorrent:
     container_name: qbittorrent
-    image: lscr.io/linuxserver/qbittorrent:4.6.6
+    image: lscr.io/linuxserver/qbittorrent:5.0.2
 
     # Unomment below if vpn is enabled
     # depends_on:               # Uncomment this line if vpn is enabled
@@ -87,7 +86,7 @@ services:
 
   radarr:
     container_name: radarr
-    image: lscr.io/linuxserver/radarr:5.9.1
+    image: lscr.io/linuxserver/radarr:5.15.1
     networks:
       - medianet   # Comment this line if VPN is enabled
     ## Uncomment below lines if VPN is enabled
@@ -105,7 +104,7 @@ services:
     restart: "unless-stopped"
 
   sonarr:
-    image: linuxserver/sonarr:4.0.6
+    image: linuxserver/sonarr:4.0.11
     container_name: sonarr
     networks:
       - medianet   # Comment this line if VPN is enabled
@@ -198,7 +197,7 @@ services:
 
 
   jellyseerr:
-     image: fallenbagel/jellyseerr:1.9.2
+     image: fallenbagel/jellyseerr:2.1.0
      container_name: jellyseerr
      networks:
       - medianet   # Comment this line if VPN is enabled
